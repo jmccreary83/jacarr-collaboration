@@ -1,5 +1,5 @@
-    aws_access_key: AKIAIZYRBH34FSI3KUFA
-    aws_secret_key: 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
+    aws_access_key: 
+    aws_secret_key: 
     key_name: Jacarr
     aws_region: us-east-2
     vpc_id: vpc-72b18a1a

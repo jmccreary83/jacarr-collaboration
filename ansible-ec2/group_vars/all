@@ -2,5 +2,5 @@ key_name: Jacarr
 aws_region: us-east-2
 vpc_id: vpc-72b18a1a
 ami_id: ami-0f65671a86f061fcd
-instance_type: t2.micro
+instance_type: t2.medium
 my_local_cidr_ip: 172.31.0.0/20

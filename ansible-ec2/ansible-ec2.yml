@@ -1,0 +1,19 @@
+# Provision EC2 instances
+- name: Create EC2 Instance(s)
+  ec2:
+    region: "{{ aws_region }}"
+    group: "default"
+    keypair: "{{ key_name }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ ami_id }}"
+    vpc_subnet_id: "subnet-4530f009"
+    assign_public_ip: yes
+    instance_tags:
+      Name: "ue2kube{{ item.0 + 1 }}"      
+    volumes:
+      - device_name: /dev/sda1
+        volume_type: gp2
+        volume_size: "20"
+        delete_on_termination: yes
+    count: "5"
+  register: ec2

@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.1.0 (36652f6)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: wordpress
+  name: wordpress
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: wordpress
+    spec:
+      containers:
+      - env:
+        - name: WORDPRESS_DB_HOST
+          value: ue2mysql01.cvgmfszbgy6w.us-east-2.rds.amazonaws.com
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
+        - name: WORDPRESS_DB_PASSWORD
+          value: Tony5tark!
+        - name: WORDPRESS_DB_USER
+          value: mysql_sa
+        - name: WORDPRESS_TABLE_PREFIX
+          value: wp_
+        image: wordpress:4.7.1-php7.0-fpm
+        name: wordpress
+        ports:
+        - containerPort: 9000
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: wordpress-claim0
+      restartPolicy: Always
+      volumes:
+      - name: wordpress-claim0
+        persistentVolumeClaim:
+          claimName: wordpress-claim0
+status: {}
